@@ -1,0 +1,38 @@
+{% extends 'admin_nav.html' %}
+{% block body %}
+{% load static%}
+
+
+<div class="container mt-5">
+    <h2 class="text-center">ASSIGN STATUS</h2>
+    <hr>
+<form method ="post">
+    {% csrf_token %}
+    <label>Notes ID</label>
+    <input type="text" name = "notesid" class = "form-control" value ="{{notes.id}}" readonly>
+
+    <label>Status</label>
+    <select name = "status" class="form-control">
+        <option value = "Accept">Accept</option>
+        <option value = "Reject">Reject</option>
+    </select>
+    <br>
+    <input type="submit" value ="Submit" class="btn btn-primary">
+</form>
+
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Status Updated Successfully');
+    window.location=('{% url 'all_notes' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+{% endblock%}

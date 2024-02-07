@@ -1,0 +1,66 @@
+{% extends 'usernavigation.html' %}
+{% block body %}
+{% load static%}
+
+{% if error == "no" %}
+<script>
+    alert('Notes Uploaded Sucessfully');
+
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong, Try Again');
+</script>
+{% endif %}
+
+<div class="container mt-5">
+    <h2 class="text-center">UPLOAD NOTES</h2>
+    <hr>
+<div class="row">
+
+    <div class="col-sm-6">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Branch</label>
+                <select type="text" class ="form-control" name="branch">
+                    <option value = "">---Select File Type---</option>
+                    <option value = "Computer Science">Computer Science</option>
+                    <option value = "Mechanical">Mechanical</option>
+                    <option value = "Civil">Civil</option>
+                    <option value = "Electronics">Electronics</option>
+                    <option value = "Electrical">Electrical</option>
+                </select>
+                <label>Subject</label>
+                <input type="text" class ="form-control" placefolder="Enter Subject" name="subject">
+
+                <label>Notes File</label>
+                <input type="file" class ="form-control"  name="notesfile">
+                <label>File Type</label>
+                <select  class ="form-control" name = "filetype">
+                    <option value = "">---Select File Type---</option>
+                    <option value = "PDF">PDF</option>
+                    <option value = "PPT">PPT</option>
+                    <option value = "DOC/DOCX">DOC/DOCX</option>
+                    <option value = "TXT">TXT</option>
+                    <option value = "Image">Image</option>
+                    <option value = "ZIP/RAR">ZIP/RAR</option>
+                </select>       
+    
+                <label>Descripton</label>
+                <textarea class ="form-control" name="description"></textarea>
+              
+                <input type="submit" class="btn btn-danger mt-2" value="SUBMIT">
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        <img src="{% static 'images/home-background.jpg'%}" style="height:70%;width:90%" class="mt-2">
+    </div>
+
+
+</div>
+</div>
+
+{% endblock%}
